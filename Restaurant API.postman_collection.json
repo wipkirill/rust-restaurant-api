@@ -1,0 +1,687 @@
+{
+	"info": {
+		"_postman_id": "0c63742f-ae71-452c-a764-e89e4ce1cf18",
+		"name": "Restaurant API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31712493"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu1\",\r\n        \"notes\": \"Notes from waiter1\",\r\n        \"quantity\": 1\r\n    },\r\n    \"2\": {\r\n        \"name\": \"Name from menu2\",\r\n        \"notes\": \"Notes from waiter2\",\r\n        \"quantity\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tables/1/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"1",
+						"items"
+					]
+				},
+				"description": "Item creation requests"
+			},
+			"response": [
+				{
+					"name": "Create single",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu1\",\r\n        \"notes\": \"Notes from waiter1\",\r\n        \"quantity\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/tables/1/items",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Name from menu\",\n    \"notes\": \"Notes from waiter\",\n    \"quantity\": 1,\n    \"time_to_prepare\": \"\"\n}"
+				},
+				{
+					"name": "Create single fail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"<Notes from waiter\",\r\n        \"quantity\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/11/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"11",
+								"items"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Smth went wrong\"\n}"
+				},
+				{
+					"name": "Create multi",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu1\",\r\n        \"notes\": \"Notes from waiter1\",\r\n        \"quantity\": 1\r\n    },\r\n    \"2\": {\r\n        \"name\": \"Name from menu2\",\r\n        \"notes\": \"Notes from waiter2\",\r\n        \"quantity\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items"
+							]
+						}
+					},
+					"code": 207,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"1\": {\n        \"status\": \"201\",\n        \"body\": {\n            \"id\": 1,\n            \"name\": \"Name from menu\",\n            \"notes\": \"Notes from waiter\",\n            \"quantity\": 1,\n            \"time_to_prepare\": \"\"\n        }\n        \n    },\n    \"2\": {\n        \"status\": \"400\",\n        \"body\":{\n            \"message\": \"Smth is invalid\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Name from menu\",\r\n    \"notes\": \"Notes from waiter\",\r\n    \"quantity\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tables/123/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"123",
+						"items"
+					]
+				},
+				"description": "Item update requests"
+			},
+			"response": [
+				{
+					"name": "Update single",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"Notes from waiter\",\r\n        \"quantity\": 100,\r\n        \"version\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Name from menu\",\n    \"notes\": \"Notes from waiter\",\n    \"quantity\": 2,\n    \"version\": 1\n}"
+				},
+				{
+					"name": "Update single fail",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Name from menu\",\r\n    \"notes\": \"Notes from waiter\",\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Smth went wrong\"\n}"
+				},
+				{
+					"name": "Update multi",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"Notes from waiter\",\r\n        \"quantity\": 1,\r\n        \"version\": 2\r\n    },\r\n    \"2\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"Notes from waiter\",\r\n        \"quantity\": 1,\r\n        \"version\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items"
+							]
+						}
+					},
+					"code": 207,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"1\": {\n        \"status\": \"200\",\n        \"body\":{\n            \"id\": 1,\n            \"name\": \"Name from menu\",\n            \"notes\": \"Notes from waiter\",\n            \"quantity\": 1,\n            \"version\": 2\n        }\n    },\n    \"2\": {\n        \"status\": \"400\",\n        \"body\":{\n            \"message\": \"Smth is invalid\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Read one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tables/1/items/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"1",
+						"items",
+						"1"
+					]
+				},
+				"description": "Read one item"
+			},
+			"response": [
+				{
+					"name": "Read one",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Name from menu\",\n    \"notes\": \"Notes from waiter\",\n    \"quantity\": 1,\n    \"time_to_prepare\": \"timestamp\",\n    \"version\": 2\n}"
+				},
+				{
+					"name": "Read one fail",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Smth went wrong\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tables/1/items?sort_by=id&filter=name:123&include_deleted=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"1",
+						"items"
+					],
+					"query": [
+						{
+							"key": "sort_by",
+							"value": "id"
+						},
+						{
+							"key": "filter",
+							"value": "name:123"
+						},
+						{
+							"key": "include_deleted",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Read all item from a table"
+			},
+			"response": [
+				{
+					"name": "Read all",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items?sort_by=id&filter=name:123&include_deleted=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "id"
+								},
+								{
+									"key": "filter",
+									"value": "name:123"
+								},
+								{
+									"key": "include_deleted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"1\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"Notes from waiter\",\r\n        \"quantity\": 1,\r\n        \"time_to_prepare\": \"timestamp\",\r\n        \"version\": 3\r\n    },\r\n    \"2\": {\r\n        \"name\": \"Name from menu\",\r\n        \"notes\": \"Notes from waiter\",\r\n        \"quantity\": 1,\r\n        \"time_to_prepare\": \"timestamp\",\r\n        \"version\": 4\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete one",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tables/1/items/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"1",
+						"items",
+						"1"
+					]
+				},
+				"description": "Delete an item from a table"
+			},
+			"response": [
+				{
+					"name": "Delete one",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Delete one fail",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Smth went wrong\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete multi",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ids\":[1,2,3]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tables/1/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tables",
+						"1",
+						"items"
+					]
+				},
+				"description": "Delete multiple items from a table"
+			},
+			"response": [
+				{
+					"name": "Delete multi",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\":[1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tables/1/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tables",
+								"1",
+								"items"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"1\": {\r\n        \"status\": \"200\",\r\n        \"body\": {}\r\n    },\r\n    \"2\": {\r\n        \"status\": \"404\",\r\n        \"body\":{\r\n            \"message\": \"Item not found\"\r\n        }\r\n    }\r\n}"
+				}
+			]
+		}
+	]
+}
